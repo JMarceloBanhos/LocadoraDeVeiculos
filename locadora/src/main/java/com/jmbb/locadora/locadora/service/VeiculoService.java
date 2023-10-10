@@ -45,8 +45,8 @@ public class VeiculoService {
         return veiculoRepository.findById(id)
                 .map(veiculoParaApagar -> {
                     veiculoRepository.deleteById(id);
-                    return ResponseEntity.
-                    ().body(veiculoParaApagar);
+                    return ResponseEntity.ok()
+                    .body(veiculoParaApagar);
                 }).orElse(ResponseEntity.notFound().build());
     }
 }

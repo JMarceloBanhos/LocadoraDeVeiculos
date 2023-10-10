@@ -30,6 +30,8 @@ public class VeiculoServiceTest {
         ResponseEntity<Veiculo> retorno = veiculoService.apagarPorId(1L);
 
         assert retorno.getStatusCode().equals(HttpStatusCode.valueOf(404));
+        Mockito.verify(veiculoRepository).findById(Mockito.anyLong());
+        Mockito.verify(veiculoRepository, Mockito.never()).deleteById(Mockito.anyLong());
     }
 
     @Test
@@ -41,5 +43,7 @@ public class VeiculoServiceTest {
         ResponseEntity<Veiculo> retorno = veiculoService.apagarPorId(1L);
 
         assert retorno.getStatusCode().equals(HttpStatusCode.valueOf(200));
+        Mockito.verify(veiculoRepository).findById(Mockito.anyLong());
+        Mockito.verify(veiculoRepository).deleteById(Mockito.anyLong());
     }
 }
